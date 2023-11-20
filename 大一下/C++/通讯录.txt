@@ -1,0 +1,184 @@
+#include<iostream>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+struct Person {
+	string name = "null";
+	long number = 0;
+	string sex = "无";
+	string city = "null";
+};
+struct ArrPerson {
+	struct Person per[1000];
+	int size = 0;
+};
+int getSize(string name, struct ArrPerson* abs) {
+	int i;
+	for (i = 0; i <= abs->size + 1; i++) {
+		if (name == abs->per[i].name) {
+			break;
+		}
+	}
+	if (i == abs->size + 1)
+		return -1;
+	else
+		return i;
+}
+
+void addPerson(struct ArrPerson* abs) {
+	if (abs->size >= 1000)
+		cout << "通讯录已满，不能添加" << endl;
+	else {
+		//姓名
+		string name;
+		cout << "请输入该联系人的姓名：";
+		cin >> name;
+		abs->per[abs->size].name = name;
+		//电话号码
+		long number;
+		cout << "请输入该联系人的电话号码：";
+		cin >> number;
+		abs->per[abs->size].number = number;
+		//性别
+		string sex;
+		cout << "请输入该联系人的性别(男or女)：";
+		while (1) {
+			cin >> sex;
+			if (sex == "男" || sex == "女") {
+				abs->per[abs->size].sex = sex;
+				break;
+			}
+			else
+				cout << "请重新输入性别：";
+		}
+		//城市
+		string city;
+		cout << "请输入该联系人所在的城市：";
+		cin >> city;
+		abs->per[abs->size].city = city;
+		abs->size++;
+	}
+}
+void deletePerson(struct ArrPerson* abs) {
+	string name;
+	cout << "请输入所要删除联系人的姓名：";
+	cin >> name;
+	int i = getSize(name, abs);
+	if (i == -1)
+		cout << "查无此人";
+	else {
+		for (i; i < abs->size-1;i++) {
+			abs->per[i].name = abs->per[i + 1].name;
+			abs->per[i].number = abs->per[i + 1].number;
+			abs->per[i].sex = abs->per[i + 1].sex;
+			abs->per[i].city = abs->per[i + 1].city;
+		}
+	}
+	abs->size--;
+}
+void modifyPerson(struct ArrPerson* abs) {
+	string name;
+	cout << "请输入所要修改联系人的姓名：";
+	cin >> name;
+	int i = getSize(name, abs);
+	if (i == -1)
+		cout << "查无此人";
+	else {
+		string name2;
+		cout << "请输入更改后的名字：";
+		cin >> name2;
+		abs->per[i].name = name2;
+		long number2;
+		cout << "请输入更改后的电话号码：";
+		cin >> number2;
+		abs->per[i].number = number2;
+		string sex2;
+		cout << "请输入更改后的性别：";
+		cin >> sex2;
+		abs->per[i].sex = sex2;
+		string city2;
+		cout << "请输入更改后的城市：";
+		cin >> city2;
+		abs->per[i].city = city2;
+	}
+
+}
+void getPerson(struct ArrPerson* abs) {
+	string name;
+	cout << "请输入所要查找联系人的姓名: ";
+	cin >> name;
+	int i;
+	int j = getSize(name, abs);
+	if (j == -1)
+		cout << "查无此人";
+	else {
+		for (i = 0; i <= abs->size + 1; i++) {
+			if (name == abs->per[i].name) {
+				cout << abs->per[i].name << "  " << abs->per[i].number << "  " << abs->per[i].sex << "  " << abs->per[i].city << endl;
+				cout << "序号为: " << i;
+				break;
+			}
+		}
+	}
+}
+void showPerson(struct ArrPerson* abs){
+	int i;
+	for (i = 0; i < abs->size; i++) {
+		cout << abs->per[i].name << "  " << abs->per[i].number << "  " << abs->per[i].sex << "  " << abs->per[i].city << endl;
+	}
+}
+void resetPerson(struct ArrPerson* abs) {
+	int i;
+	for (i = 0; i <= abs->size; i++) {
+		abs->per[i].name = "null";
+		abs->per[i].number = 0;
+		abs->per[i].sex = "无";
+		abs->per[i].city = "null";
+	}
+}
+
+void shoeMenu() {
+	cout << "******1、添加联系人******" << endl;
+	cout << "******2、删除联系人******" << endl;
+	cout << "******3、修改联系人******" << endl;
+	cout << "******4、清除联系人******" << endl;
+	cout << "******5、显示联系人******" << endl;
+	cout << "******6、查找联系人******" << endl;
+	cout << "******0、退出通讯录******" << endl;
+}
+int main() 
+{
+	shoeMenu();
+	ArrPerson abs;
+	int select = 0;
+	while(1){
+		cout << "请输入select的值（0--6）" << endl;
+		cin >> select;
+		switch (select) {
+		case 6:
+			getPerson(&abs);
+			break;
+		case 5:
+			showPerson(&abs);
+			break;
+		case 4:
+			resetPerson(&abs);
+			break;
+		case 3:
+			modifyPerson(&abs);
+			break;
+		case 2:
+			deletePerson(&abs);
+			break;
+		case 1:
+			addPerson(&abs);
+			break;
+		case 0:
+			return 0;
+			break;
+		}
+	}
+	return 0;
+
+}

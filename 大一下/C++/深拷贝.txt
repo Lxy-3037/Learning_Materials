@@ -1,0 +1,37 @@
+#include<iostream>
+#include<cstdlib>
+#include<cmath>
+#include<vector>
+#include <cassert>
+using namespace std;
+
+
+
+class Book {
+public:
+	Book();
+	Book(const Book& b);
+	~Book();
+private:
+	char* book1;
+};
+Book::Book() {
+	book1 = new char[10];
+	cout << "创建动态数组" << endl;
+}
+Book::~Book() {
+	cout << "完成对堆空间的释放" << endl;
+	delete[] book1;
+	book1 = NULL;
+}
+Book::Book(const Book& b) {
+	book1 = new char[10];
+	for (int i = 0; i < 10; i++)
+		book1[i] = b.book1[i];
+	cout << "完成深拷贝" << endl;
+}
+int main() {
+	Book book2;
+	Book book3(book2);
+	return 0;
+}

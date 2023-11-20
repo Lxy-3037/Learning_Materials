@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cstdlib>
+#include<cmath>
+#include<vector>
+using namespace std;
+
+
+void swap(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+void sort(int* a,int i) {
+	
+	for (int j = i; j > 0; j--) {
+		for (int j = 0; j < i - 1; j++) {
+			if (a[j] >= a[j + 1]) {
+				swap(&a[j], &a[j + 1]);
+			}
+		}
+	}
+	cout << "排序后的数列为：";
+	for (int j = 0; j < i; j++) {
+		cout << " "<<a[j];
+	}
+	
+}
+
+int main() {
+	const int max = 10;
+	int a[max];
+	cout << "请选择输入数列的个数：(5,6,7,8,9,10)" << endl;
+	int i;
+	cin >> i;
+	cout << "请输入数列：";
+	for (int k = 0; k < i; k++) {
+		cin >> a[k];
+	}
+	sort(a, i);
+	return 0;
+}

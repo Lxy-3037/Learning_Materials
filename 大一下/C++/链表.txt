@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+struct Book {
+	string name;
+	string writer;
+	string kind;
+};
+
+struct Point {
+	struct Book book1;
+	Point* next;
+};
+int main() {
+	Point* head = new Point;
+	head->book1 = { "null","null","null" };
+	head->next = NULL;
+	Point* p = head;
+	for (int i = 1; i < 4; i++) {
+		Point* newpoint = new Point;
+		cout << "请输入书籍的必要信息：书名，作者，种类";
+		cin >> newpoint->book1.name >> newpoint->book1.writer >> newpoint->book1.kind;
+		p->next = newpoint;
+		p = newpoint;
+	}
+	p = head;
+	while (p->next != NULL)
+	{
+		p = p->next;
+		cout << p->book1.name << " " << p->book1.writer << "  " << p->book1.kind << endl;
+	}
+	cout << p->book1.name << " " << p->book1.writer << "  " << p->book1.kind;
+
+	
+	delete head;
+	return 0;
+
+	
+ }
