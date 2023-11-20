@@ -1,0 +1,88 @@
+Crocodile
+
+
+1) Behaviors:
+
+
+      * Constructor: Create an instance of Crocodile at the specified row and column of the grid.
+                     It will be have a certain amount of energy and an age 0. It will belong to the "Crocodile" species.
+		     It can be identified by a unique name. The maximum energy it can carry must be set to the maximum energy 
+                     allowed for a newborn Crocodile. The minimum energy it needs to stay alive must be set to the minimum energy 
+                     required for an Crocodile to stay alive. 
+
+      *            liveALittle. Live a block of time. If the Crocodile is hungry then it looks for food in adjacent cell and 
+		     moves to that cell to eat if there is Catfish available , otherwise moves to a random adjacent cell.  
+		     Relinquish necessary energy to swim and to eat and die if the energy falls bellow the minimum required
+                     to stay alive. Increase the minumun and maximum energy of the Crocodile. Returns nothing.
+
+      *	die. Update living status to being dead. Returns nothing. 
+      *	isDead. Return the living status of the Crocodile as a boolean. 
+      *          getRow. Return the row in which Crocodile is located as an integer. 
+      *	getColumn. Return the column in which Crocodile is located as an integer. 
+      *          getAge. Return the age of Crocodile as an integer. 	
+      *	getName. Return the unique name identifying the Crocodile as a String. 
+      *	getImage. Return an image representing the Crocodile. 
+      *	getColor. Return the color of the Crocodile as a String. 
+      *	getEnergy. Return the current energy level as an integer. 
+      *	getDisplayMechanism. Return the mechanism used for displaying the Crocodile, 
+                             which is either the name of an image file or a constant defined in the Simulation class. 
+      *	getSpecies. Return the species of the Crocodile as a String. 
+      *	giveUpEnergy. Relinquish energy when it has eaten for a Crocodile. Returns the energy that it has in that moment. 
+      *	getMinEnergy. Return the minimum energy needed to stay alive as an integer. 
+      *	getMaxEnergy. Return the maximum energy that can be carried as an integer.   
+      *	setEnergy. Set the energy level as specified by the integer value passed as a parameter. 
+
+      *	moveToRow. Move the Crocodile to the row specified by the integer value passed as a parameter. 
+                    Returns the row where the Crocodile is moved as an integer. 
+      *           moveToColumn. Move the Crocodile to the column specified by the integer value passed as a parameter.
+                      Returns the column where the Crocodile is moved as an integer. 
+      *	getDirection. Check the direction in which the Crocodile is facing. Returns a String. 
+    
+      *         lookForFoodInNeighboardhood. Return a neighboring Catfish that is food.
+
+      *	isHungry. Check if the current energy level of the Crocodile is less than twice the amount needed for survival. 
+                  Returns a boolean. 
+      *        swimIfPossible. Determine whether or not it can move the direction it moves
+
+      *        eatIfPossible.Determine if it can eat food
+      ***** new behaviors inserted below ************************************************************************
+
+
+
+
+2) Instance attributes:
+
+      *	row. Row identifying the location represented as an integer 
+      *	column. Column identifying the location represented as an integer 
+      *	deadOrAlive. Living status represented as a String 
+      *	energy. Current energy level represented as a String 
+      *	age. Age represented as an integer 
+      *	simulation. Simulation to which the Crocodile belongs 
+      *	minEnergy. Minimum energy needed to survive 
+      *	maxEnergy. Maximum energy that can be carried 
+      *          direction. The direction in which the Crocodile is facing represented as a String 
+
+
+      Constant instance attributes:
+
+      *	name. Unique name represented as a String 
+
+
+
+3)    Class Attributes:
+
+
+      * nCrocodileCreated. Number of Crocodile created so far represented as an integer 
+
+      Constant Class Attributes:
+
+      *	ALIVE. Status of Crocodile that is alive represented as a String 
+      *	DEAD. Status of Crocodile that is dead represented as a String 
+      *	SPECIES. Species of Crocodile represented as a String 
+      *	BABY_MAX_ENERGY. Maximum energy that can be stored, represented as an integer 
+      *	BABY_MIN_ENERGY. Minimum energy needed to stay alive, represented as an integer 
+      *	 RIGHT. Indicate the direction Crocodile is facing represented as String
+      *	 LEFT. Indicate the direction Crocodile is facing represented as String
+      *	 UP. Indicate the direction Crocodile is facing represented as String
+      *	 DOWN. Indicate the direction Crocodile is facing represented as String
+      ***** new constant class attributes inserted below ************************************************************
